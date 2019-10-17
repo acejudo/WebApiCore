@@ -35,7 +35,7 @@ namespace WebApiCore.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] UserModel userModel)
         {
-            var user = await userManager.FindByNameAsync(appUser.UserName);
+           /* var user = await userManager.FindByNameAsync(appUser.UserName);
             if (user == null)
             {
                 AppUser user = new AppUser
@@ -51,7 +51,8 @@ namespace WebApiCore.Controllers
             else
             {
                 return Conflict();
-            }
+            }*/
+             return NotFound();
         }
     }
 }
