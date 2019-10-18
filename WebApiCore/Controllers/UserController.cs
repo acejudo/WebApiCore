@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -35,24 +36,23 @@ namespace WebApiCore.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] UserModel userModel)
         {
-           /* var user = await userManager.FindByNameAsync(appUser.UserName);
+            var user = await userManager.FindByNameAsync(userModel.Username);
             if (user == null)
             {
-                AppUser user = new AppUser
+                AppUser AppUser = new AppUser
                 {
-                    Email = appUser.Email,
+                    Email = userModel.Email,
                     SecurityStamp = Guid.NewGuid().ToString(),
-                    UserName = appUser.UserName
+                    UserName = userModel.Username
                 };
 
-                IdentityResult result = await userManager.CreateAsync(user, "Geralt12345!@");
+                IdentityResult result = await userManager.CreateAsync(AppUser, userModel.Password);
                 return Ok(user);
             }
             else
             {
                 return Conflict();
-            }*/
-             return NotFound();
+            }
         }
     }
 }
